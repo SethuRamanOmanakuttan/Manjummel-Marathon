@@ -109,9 +109,12 @@ export default function CauseSection() {
               together is harder to break.
             </p>
 
-            {/* Stat row — real campaign numbers */}
+            {/* Stat row — real campaign numbers. Three items in a flex
+                row wrap unevenly on narrow screens (2 then 1 alone), so
+                .cause-stat-row switches to a deliberate 2-column grid
+                below 640px — see index.css. */}
             <div
-              className="stat-row-line"
+              className="stat-row-line cause-stat-row"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',

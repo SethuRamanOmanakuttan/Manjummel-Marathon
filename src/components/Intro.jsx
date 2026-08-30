@@ -126,35 +126,20 @@ export default function Intro() {
             </p>
           </div>
 
-          {/* Right: big funky stat stack — same height as the left column */}
-          <div
-            className="intro-stat-row"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              flex: '0 0 auto',
-              width: 'clamp(7rem, 12vw, 9rem)',
-            }}
-          >
+          {/* Right on desktop (tall column matching the illustration's
+              height) / 2x2 grid on mobile (see .intro-stat-row in
+              index.css for the breakpoint swap) */}
+          <div className="intro-stat-row">
             {[
               { val: '04', label: 'Season' },
               { val: '03', label: 'Distances' },
               { val: '02', label: 'Oct 2026' },
               { val: '01', label: 'Of a kind' },
             ].map((item) => (
-              <div
-                key={item.label}
-                className="stat-block intro-stat-funky"
-                style={{ textAlign: 'right' }}
-              >
+              <div key={item.label} className="stat-block intro-stat-funky">
                 <p
                   className="font-display stat-block-value intro-stat-funky-value"
-                  style={{
-                    fontSize: 'clamp(2.75rem, 6vw, 4rem)',
-                    color: '#F5F1E8',
-                  }}
+                  style={{ color: '#F5F1E8' }}
                 >
                   {item.val}
                 </p>

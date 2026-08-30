@@ -32,7 +32,7 @@ export default function Navbar() {
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
-            gap: 'clamp(0.5rem, 1.5vw, 0.75rem)',
+            gap: 'clamp(0.35rem, 1.5vw, 0.75rem)',
             minWidth: 0,
           }}
         >
@@ -55,12 +55,13 @@ export default function Navbar() {
             className="label-sm"
             style={{
               color: 'rgba(245,241,232,0.75)',
-              letterSpacing: '0.14em',
+              letterSpacing: 'clamp(0em, 0.35vw, 0.14em)',
               lineHeight: 1,
-              fontSize: 'clamp(0.7rem, 1.8vw, 0.85rem)',
+              fontSize: 'clamp(0.56rem, 1.8vw, 0.85rem)',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
+              minWidth: 0,
             }}
           >
             MANJUMMEL MARATHON
@@ -103,7 +104,7 @@ export default function Navbar() {
           className="btn-nav"
           id="nav-register-btn"
           aria-label="Register for the marathon"
-          style={{ flexShrink: 0, fontSize: '0.8rem' }}
+          style={{ flexShrink: 0, fontSize: 'clamp(0.68rem, 1.9vw, 0.8rem)' }}
         >
           REGISTER
           <span className="btn-arrow" aria-hidden="true">↗</span>

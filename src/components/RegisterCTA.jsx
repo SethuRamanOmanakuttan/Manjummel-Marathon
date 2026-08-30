@@ -87,8 +87,14 @@ export default function RegisterCTA() {
             <span style={{ color: '#F26A21', WebkitTextStroke: '0', WebkitTextFillColor: '#F26A21' }}>.</span>
           </h2>
 
-          {/* Meta strip */}
+          {/* Meta strip — SEASON / DATE side by side, LOCATION stranding
+              alone on its own row was an accidental flex-wrap artifact
+              (two items fit, the third drops with empty space beside
+              it). .cta-meta-strip below 560px becomes a deliberate
+              2-column grid instead, with LOCATION spanning both
+              columns on its own row. */}
           <div
+            className="cta-meta-strip"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -109,7 +115,7 @@ export default function RegisterCTA() {
             ].map((item, i, arr) => (
               <div
                 key={item.label}
-                className="stat-block"
+                className="stat-block cta-meta-item"
                 style={{
                   flex: '0 0 auto',
                   paddingRight: i < arr.length - 1 ? 'clamp(1.25rem, 4vw, 2.5rem)' : 0,

@@ -61,7 +61,7 @@ export default function EventDate() {
                 className="font-display"
                 style={{
                   display: 'block',
-                  fontSize: 'clamp(5rem, 16vw, 14rem)',
+                  fontSize: 'clamp(3rem, 16vw, 14rem)',
                   color: '#F5F1E8',
                 }}
               >
@@ -73,7 +73,7 @@ export default function EventDate() {
                 className="font-display text-outline"
                 style={{
                   display: 'block',
-                  fontSize: 'clamp(5rem, 16vw, 14rem)',
+                  fontSize: 'clamp(3rem, 16vw, 14rem)',
                   WebkitTextStrokeColor: 'rgba(245,241,232,0.45)',
                 }}
               >
@@ -85,7 +85,7 @@ export default function EventDate() {
                 className="font-display"
                 style={{
                   display: 'block',
-                  fontSize: 'clamp(5rem, 16vw, 14rem)',
+                  fontSize: 'clamp(3rem, 16vw, 14rem)',
                   color: 'rgba(245,241,232,0.14)',
                 }}
               >

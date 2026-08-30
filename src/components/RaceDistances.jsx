@@ -73,6 +73,7 @@ export default function RaceDistances() {
                 alignItems: 'center',
                 padding: 'clamp(1.5rem, 3.5vw, 2.5rem) 0',
                 gap: 'clamp(0.75rem, 3vw, 2rem)',
+                rowGap: '0.5rem',
                 transitionDelay: `${index * 0.08}s`,
               }}
             >
@@ -103,7 +104,7 @@ export default function RaceDistances() {
               </span>
 
               {/* Category + tag */}
-              <div style={{ flex: '1 1 12rem', minWidth: 0 }}>
+              <div className="race-row-category" style={{ flex: '1 1 12rem', minWidth: 0 }}>
                 <span
                   className="label-sm"
                   style={{

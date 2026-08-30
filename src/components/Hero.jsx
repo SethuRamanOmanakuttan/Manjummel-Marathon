@@ -109,14 +109,14 @@ export default function Hero() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.7em',
+            gap: '0.6em',
             color: 'rgba(245,241,232,0.75)',
-            letterSpacing: '0.22em',
-            fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+            letterSpacing: 'clamp(0.05em, 1vw, 0.22em)',
+            fontSize: 'clamp(0.7rem, 1.6vw, 1.05rem)',
             fontWeight: 700,
             textTransform: 'uppercase',
             margin: 0,
-            marginBottom: 'clamp(1.25rem, 3vw, 2rem)',
+            marginBottom: 'clamp(1.5rem, 3vw, 2rem)',
           }}
         >
           <span aria-hidden="true" className="hero-eyebrow-dot" />
