@@ -84,6 +84,42 @@ export default function Footer() {
         {/* Divider */}
         <div className="divider" />
 
+        {/* Enquiries */}
+        <div
+          style={{
+            paddingTop: '1.75rem',
+            paddingBottom: '0.5rem',
+            display: 'flex',
+            alignItems: 'baseline',
+            flexWrap: 'wrap',
+            gap: '0.5rem 1rem',
+          }}
+        >
+          <p
+            className="label-xs"
+            style={{ color: 'rgba(245,241,232,0.3)' }}
+          >
+            ENQUIRIES
+          </p>
+          <a
+            href="tel:+919446677000"
+            className="footer-contact-link"
+            aria-label="Call +91 94466 77000 for enquiries"
+          >
+            +91 94466 77000
+          </a>
+          <span aria-hidden="true" style={{ color: 'rgba(245,241,232,0.15)' }}>
+            /
+          </span>
+          <a
+            href="tel:+919447986776"
+            className="footer-contact-link"
+            aria-label="Call +91 94479 86776 for enquiries"
+          >
+            +91 94479 86776
+          </a>
+        </div>
+
         {/* Bottom row: copyright */}
         <div
           style={{

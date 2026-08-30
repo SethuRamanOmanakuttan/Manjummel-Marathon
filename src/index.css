@@ -791,6 +791,25 @@ body {
   outline-offset: 4px;
 }
 
+.footer-contact-link {
+  color: rgba(245, 241, 232, 0.55);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: #F26A21;
+}
+
+.footer-contact-link:focus-visible {
+  outline: 2px solid #F26A21;
+  outline-offset: 3px;
+}
+
 /* ─────────────────────────────────────────────
    Informational Stat Blocks (Intro, CauseSection,
    RegisterCTA meta strip) — a restrained hover
@@ -1146,8 +1165,31 @@ body {
   flex-shrink: 0;
 }
 
-.register-modal-footnote {
+.register-modal-contact {
   margin-top: clamp(1.5rem, 4vw, 2rem);
+}
+
+.register-modal-contact-link {
+  color: rgba(245, 241, 232, 0.65);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: color 0.22s ease;
+}
+
+.register-modal-contact-link:hover,
+.register-modal-contact-link:focus-visible {
+  color: #F26A21;
+}
+
+.register-modal-contact-link:focus-visible {
+  outline: 2px solid #F26A21;
+  outline-offset: 3px;
+}
+
+.register-modal-footnote {
+  margin-top: clamp(1rem, 3vw, 1.25rem);
   color: rgba(245, 241, 232, 0.32);
   font-size: 0.78rem;
   line-height: 1.6;

@@ -73,20 +73,17 @@ export default function RegisterModal({ open, onClose }) {
         </button>
 
         <span className="label-sm" style={{ color: '#F26A21' }}>
-          HOLD YOUR LACES
+          COMING SOON
         </span>
 
         <h2 id="register-modal-title" className="font-display register-modal-title">
-          REGISTRATION IS
+          REGISTRATION
           <br />
-          <span className="text-outline" style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.65)' }}>
-            LACING UP.
-          </span>
+          ISN'T OPEN YET
         </h2>
 
         <p className="register-modal-copy">
-          We're still tying our shoelaces and registration isn't open yet.
-          Here's what it'll cost once it is.
+          We'll open registration soon. Here are the prices for each distance.
         </p>
 
         <div className="register-modal-prices">
@@ -104,6 +101,23 @@ export default function RegisterModal({ open, onClose }) {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="register-modal-contact">
+          <p className="label-xs" style={{ color: 'rgba(245,241,232,0.3)', marginBottom: '0.5rem' }}>
+            ENQUIRIES
+          </p>
+          <p>
+            <a href="tel:+919446677000" className="register-modal-contact-link">
+              +91 94466 77000
+            </a>
+            <span aria-hidden="true" style={{ color: 'rgba(245,241,232,0.15)', margin: '0 0.5rem' }}>
+              /
+            </span>
+            <a href="tel:+919447986776" className="register-modal-contact-link">
+              +91 94479 86776
+            </a>
+          </p>
         </div>
 
         <p className="register-modal-footnote">
