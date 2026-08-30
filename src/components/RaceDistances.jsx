@@ -30,7 +30,7 @@ export default function RaceDistances() {
         backgroundColor: '#071321',
         padding: '0 clamp(1.5rem, 5vw, 4rem)',
         paddingTop: 'clamp(4rem, 10vw, 7rem)',
-        paddingBottom: 'clamp(5rem, 12vw, 10rem)',
+        paddingBottom: 'clamp(2.5rem, 6vw, 4.5rem)',
       }}
     >
       <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
@@ -79,7 +79,7 @@ export default function RaceDistances() {
               <span
                 className="race-accent label-xs"
                 style={{
-                  color: 'rgba(245,241,232,0.18)',
+                  color: 'rgba(245,241,232,0.38)',
                   width: '2rem',
                   flexShrink: 0,
                   fontVariantNumeric: 'tabular-nums',
@@ -105,18 +105,22 @@ export default function RaceDistances() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <span
                   className="label-sm"
-                  style={{ color: 'rgba(245,241,232,0.5)', display: 'block' }}
+                  style={{
+                    color: 'rgba(245,241,232,0.78)',
+                    display: 'block',
+                    fontSize: 'clamp(0.85rem, 1.6vw, 1rem)',
+                  }}
                 >
                   {race.category}
                 </span>
                 <span
                   style={{
                     display: 'inline-block',
-                    marginTop: '0.4rem',
-                    fontSize: '0.65rem',
-                    fontWeight: 500,
+                    marginTop: '0.5rem',
+                    fontSize: '0.72rem',
+                    fontWeight: 600,
                     letterSpacing: '0.12em',
-                    color: 'rgba(245,241,232,0.22)',
+                    color: 'rgba(242,106,33,0.75)',
                     textTransform: 'uppercase',
                   }}
                 >
@@ -140,7 +144,7 @@ export default function RaceDistances() {
                 aria-hidden="true"
                 style={{
                   fontSize: 'clamp(0.9rem, 1.8vw, 1.2rem)',
-                  color: 'rgba(245,241,232,0.12)',
+                  color: 'rgba(245,241,232,0.3)',
                   flexShrink: 0,
                 }}
               >

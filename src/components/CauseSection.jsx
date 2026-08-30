@@ -9,37 +9,14 @@ export default function CauseSection() {
         overflow: 'hidden',
       }}
     >
-      {/* Ghost shield watermark */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          left: 'clamp(-2rem, -3vw, -4rem)',
-          bottom: '-6%',
-          zIndex: 0,
-          userSelect: 'none',
-          pointerEvents: 'none',
-          fontSize: 'clamp(10rem, 26vw, 24rem)',
-          fontWeight: 800,
-          letterSpacing: '-0.05em',
-          lineHeight: 0.85,
-          color: 'transparent',
-          WebkitTextStroke: '1px rgba(245,241,232,0.04)',
-        }}
-      >
-        തൂഫാൻ
-      </div>
-
       <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div className="divider" />
-
         <div
           className="reveal"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(12, 1fr)',
             columnGap: '2rem',
-            paddingTop: 'clamp(3rem, 7vw, 6rem)',
+            paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)',
           }}
         >
           {/* Left: heading */}
@@ -142,7 +119,7 @@ export default function CauseSection() {
             {/* CTA link */}
             <div style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}>
               <a
-                href="https://www.operationtoofan.com/"
+                href="https://keralapolice.gov.in/page/operation-toofan-the-narco-hunt"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-nav"

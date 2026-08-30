@@ -55,16 +55,65 @@ export default function Intro() {
           </div>
         </div>
 
-        {/* Supporting text — right-pulled on desktop */}
+        {/* Supporting text — right-pulled on desktop, route illustration fills the left */}
         <div
           className="reveal"
           style={{
             display: 'flex',
-            justifyContent: 'flex-end',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 'clamp(2rem, 5vw, 4rem)',
             marginTop: 'clamp(2.5rem, 5vw, 4rem)',
           }}
         >
-          <div style={{ maxWidth: '44ch' }}>
+          {/* Route line art — start flag, winding course, checkpoints, finish */}
+          <svg
+            aria-hidden="true"
+            className="intro-route"
+            viewBox="0 0 820 320"
+            fill="none"
+            style={{ flex: '1 1 auto', minWidth: 0, maxWidth: '860px', height: 'auto' }}
+          >
+            <path
+              className="intro-route-path"
+              d="M30 60
+                 C 110 60, 120 150, 190 160
+                 S 270 110, 300 175
+                 S 210 265, 275 285
+                 S 420 270, 400 195
+                 S 320 95, 410 75
+                 S 480 40, 550 90
+                 S 600 200, 670 190
+                 S 740 100, 790 60"
+              stroke="rgba(245,241,232,0.3)"
+              strokeWidth="2"
+              strokeDasharray="1 11"
+              strokeLinecap="round"
+            />
+
+            {/* Checkpoint markers along the route */}
+            <circle cx="190" cy="160" r="4" fill="none" stroke="#F5F1E8" strokeWidth="1.5" opacity="0.45" />
+            <circle cx="275" cy="285" r="4" fill="none" stroke="#F5F1E8" strokeWidth="1.5" opacity="0.45" />
+            <circle cx="410" cy="75" r="4" fill="none" stroke="#F5F1E8" strokeWidth="1.5" opacity="0.45" />
+            <circle cx="550" cy="90" r="4" fill="none" stroke="#F5F1E8" strokeWidth="1.5" opacity="0.45" />
+            <circle cx="670" cy="190" r="4" fill="none" stroke="#F5F1E8" strokeWidth="1.5" opacity="0.45" />
+
+            {/* Start flag */}
+            <g transform="translate(30 60)">
+              <line x1="0" y1="4" x2="0" y2="-32" stroke="#F26A21" strokeWidth="2.5" strokeLinecap="round" />
+              <path d="M0 -32 L24 -24 L0 -16 Z" fill="#F26A21" />
+              <circle r="6" fill="#071321" stroke="#F5F1E8" strokeWidth="2.5" />
+            </g>
+
+            {/* Finish marker */}
+            <g transform="translate(790 60)">
+              <circle r="14" fill="none" stroke="#F26A21" strokeWidth="1.5" opacity="0.35" />
+              <circle r="9" fill="none" stroke="#F26A21" strokeWidth="1.5" opacity="0.6" />
+              <circle r="4.5" fill="#F26A21" />
+            </g>
+          </svg>
+
+          <div style={{ maxWidth: '44ch', flexShrink: 0 }}>
             <p
               style={{
                 color: 'rgba(245,241,232,0.55)',

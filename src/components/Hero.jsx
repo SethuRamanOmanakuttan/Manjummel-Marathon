@@ -80,6 +80,10 @@ export default function Hero() {
         }}
       />
 
+      {/* Corner frame marks — race-bib / stopwatch energy */}
+      <div aria-hidden="true" className="hero-frame hero-frame-tl" />
+      <div aria-hidden="true" className="hero-frame hero-frame-br" />
+
       {/* Content */}
       <div
         style={{
@@ -97,11 +101,15 @@ export default function Hero() {
       >
         {/* Eyebrow */}
         <p
-          className="anim-meta hero-kicker label-xs"
+          className="anim-meta hero-kicker"
           style={{
-            color: 'rgba(245,241,232,0.5)',
-            letterSpacing: '0.24em',
-            marginBottom: 'clamp(1rem, 2.5vw, 1.5rem)',
+            color: 'rgba(245,241,232,0.75)',
+            letterSpacing: '0.22em',
+            fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            margin: 0,
+            marginBottom: 'clamp(1.25rem, 3vw, 2rem)',
           }}
         >
           SEASON 04 &nbsp;·&nbsp; FOR A{' '}
@@ -115,25 +123,25 @@ export default function Hero() {
           style={{
             margin: 0,
             padding: 0,
-            marginTop: 'clamp(0.75rem, 2vw, 1.25rem)',
-            marginLeft: 'clamp(-1.5rem, -2.5vw, -0.75rem)',
           }}
         >
-          {/* Line 1: NSS — small accent */}
+          {/* Line 1: NSS — white, aligned with the display type below via a running rule */}
           <span
             style={{
-              display: 'block',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.85em',
               fontWeight: 800,
               textTransform: 'uppercase',
-              letterSpacing: '0.2em',
+              letterSpacing: '-0.01em',
               lineHeight: 1,
               color: '#F5F1E8',
-              fontSize: 'clamp(1.5rem, 3vw, 3.25rem)',
-              marginBottom: '0.2em',
-              marginLeft: '.25em',
+              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              marginBottom: '0.15em',
             }}
           >
             NSS
+            <span className="hero-rule" aria-hidden="true" />
           </span>
 
           {/* Line 2: MANJUMMEL — solid, massive */}
@@ -171,21 +179,13 @@ export default function Hero() {
         <div
           className="anim-cta"
           style={{
-            marginTop: 'clamp(2rem, 5vw, 3.25rem)',
+            marginTop: 'clamp(2.25rem, 5vw, 3.5rem)',
             display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: 'clamp(0.85rem, 2vw, 1.1rem)',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: 'clamp(1.25rem, 3vw, 2rem)',
           }}
         >
-          <time
-            dateTime="2026-10-02"
-            className="label-sm"
-            style={{ color: 'rgba(245,241,232,0.4)' }}
-          >
-            02 OCT 2026 &nbsp;·&nbsp; MANJUMMEL, KERALA
-          </time>
-
           <a
             ref={ctaRef}
             href="#register"
@@ -197,6 +197,22 @@ export default function Hero() {
             REGISTER NOW
             <span className="btn-arrow" aria-hidden="true">→</span>
           </a>
+
+          <time
+            dateTime="2026-10-02"
+            className="hero-date"
+            style={{
+              color: 'rgba(245,241,232,0.85)',
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+            }}
+          >
+            02 OCT 2026
+            <span className="hero-date-sep" aria-hidden="true" />
+            MANJUMMEL, KERALA
+          </time>
         </div>
       </div>
 
@@ -213,7 +229,7 @@ export default function Hero() {
           flexDirection: 'column',
           alignItems: 'center',
           gap: '0.5rem',
-          opacity: 0.3,
+          opacity: 0.35,
         }}
       >
         <span
@@ -226,7 +242,7 @@ export default function Hero() {
         >
           SCROLL
         </span>
-        <span style={{ color: '#F5F1E8', fontSize: '0.7rem' }}>↓</span>
+        <span className="hero-scroll-line" style={{ color: '#F26A21' }} />
       </div>
     </section>
   );
