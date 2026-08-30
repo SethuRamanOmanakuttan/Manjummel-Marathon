@@ -107,16 +107,23 @@ export default function RegisterModal({ open, onClose }) {
           <p className="label-xs" style={{ color: 'rgba(245,241,232,0.3)', marginBottom: '0.5rem' }}>
             ENQUIRIES
           </p>
-          <p>
-            <a href="tel:+919446677000" className="register-modal-contact-link">
-              +91 94466 77000
-            </a>
-            <span aria-hidden="true" style={{ color: 'rgba(245,241,232,0.15)', margin: '0 0.5rem' }}>
-              /
-            </span>
-            <a href="tel:+919447986776" className="register-modal-contact-link">
-              +91 94479 86776
-            </a>
+          <p style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.5rem' }}>
+            {[
+              { display: '+91 94466 77000', tel: '+919446677000' },
+              { display: '+91 94479 86776', tel: '+919447986776' },
+              { display: '+91 83019 30872', tel: '+918301930872' },
+            ].map((phone, i) => (
+              <span key={phone.tel} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                {i > 0 && (
+                  <span aria-hidden="true" style={{ color: 'rgba(245,241,232,0.15)' }}>
+                    /
+                  </span>
+                )}
+                <a href={`tel:${phone.tel}`} className="register-modal-contact-link">
+                  {phone.display}
+                </a>
+              </span>
+            ))}
           </p>
         </div>
 

@@ -118,6 +118,16 @@ export default function Footer() {
           >
             +91 94479 86776
           </a>
+          <span aria-hidden="true" style={{ color: 'rgba(245,241,232,0.15)' }}>
+            /
+          </span>
+          <a
+            href="tel:+918301930872"
+            className="footer-contact-link"
+            aria-label="Call +91 83019 30872 for enquiries"
+          >
+            +91 83019 30872
+          </a>
         </div>
 
         {/* Bottom row: copyright */}
