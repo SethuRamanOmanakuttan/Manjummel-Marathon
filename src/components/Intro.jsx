@@ -46,10 +46,8 @@ export default function Intro() {
               RUN THROUGH
               <br />
               <span
-                style={{
-                  WebkitTextStroke: '1.5px rgba(245,241,232,0.35)',
-                  color: 'transparent',
-                }}
+                className="text-outline"
+                style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.35)' }}
               >
                 MANJUMMEL.
               </span>
@@ -75,9 +73,9 @@ export default function Intro() {
                 fontWeight: 400,
               }}
             >
-              A community run through the streets, waterfronts and stories
-              of Manjummel, Kerala. Four seasons of spirit, sweat and the
-              simple joy of running together.
+              A community run through the streets and stories of Manjummel,
+              Kerala. Four seasons of spirit, sweat and the simple joy of
+              running together.
             </p>
 
             {/* Stat-like detail row */}

@@ -4,7 +4,7 @@ const races = [
     distance: '21 KM',
     category: 'HALF MARATHON',
     tag: 'Flagship',
-    blurb: 'The full test. Waterfront straights, timed chip, finisher medal.',
+    blurb: 'The full test. Timed chip, marked route, finisher medal.',
   },
   {
     id: '02',

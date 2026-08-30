@@ -78,10 +78,8 @@ export default function RegisterCTA() {
             NSS MANJUMMEL
             <br />
             <span
-              style={{
-                color: 'transparent',
-                WebkitTextStroke: '2px rgba(245,241,232,0.65)',
-              }}
+              className="text-outline"
+              style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.65)' }}
             >
               MARATHON
             </span>

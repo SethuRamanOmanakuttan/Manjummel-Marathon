@@ -63,13 +63,11 @@ export default function EventDate() {
 
             {/* "OCT" — visible mid tone */}
             <span
-              className="font-display"
+              className="font-display text-outline"
               style={{
                 display: 'block',
                 fontSize: 'clamp(5rem, 16vw, 14rem)',
-                /* Outline style — consistent with hero */
-                color: 'transparent',
-                WebkitTextStroke: '2px rgba(245,241,232,0.45)',
+                WebkitTextStrokeColor: 'rgba(245,241,232,0.45)',
               }}
             >
               OCT

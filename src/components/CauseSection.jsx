@@ -61,10 +61,8 @@ export default function CauseSection() {
               EVERY STRIDE IS A STAND
               <br />
               <span
-                style={{
-                  WebkitTextStroke: '1.5px rgba(245,241,232,0.35)',
-                  color: 'transparent',
-                }}
+                className="text-outline"
+                style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.35)' }}
               >
                 AGAINST ADDICTION.
               </span>

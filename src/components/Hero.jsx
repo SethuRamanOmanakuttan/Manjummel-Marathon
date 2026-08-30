@@ -146,17 +146,15 @@ export default function Hero() {
             MANJUMMEL
           </span>
 
-          {/* Line 3: MARATHON, thin outline for a lighter silhouette */}
+          {/* Line 3: MARATHON, fluid outline that stays crisp at any size */}
           <span
+            className="text-outline"
             style={{
               display: 'block',
               fontWeight: 800,
               textTransform: 'uppercase',
               letterSpacing: '-0.03em',
               lineHeight: 0.88,
-              color: 'transparent',
-              WebkitTextStroke: '2px rgba(245,241,232,0.85)',
-              marginLeft: '-2px',
               fontSize: 'clamp(4rem, 15vw, 13rem)',
             }}
           >

@@ -46,6 +46,14 @@ body {
   text-transform: uppercase;
 }
 
+/* Fluid outline stroke — scales down with the text so sharp letter
+   corners (A, M, N) don't turn chunky/broken at small sizes. */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke-width: clamp(0.6px, 0.15vw, 2px);
+  -webkit-text-stroke-color: rgba(245, 241, 232, 0.85);
+}
+
 .label-sm {
   font-size: 0.75rem;
   font-weight: 600;
