@@ -112,7 +112,12 @@ export default function Hero() {
         <h1
           aria-label="NSS Manjummel Marathon"
           className="anim-headline"
-          style={{ margin: 0, padding: 0, marginTop: 'clamp(0.75rem, 2vw, 1.25rem)' }}
+          style={{
+            margin: 0,
+            padding: 0,
+            marginTop: 'clamp(0.75rem, 2vw, 1.25rem)',
+            marginLeft: 'clamp(-1.5rem, -2.5vw, -0.75rem)',
+          }}
         >
           {/* Line 1: NSS — small accent */}
           <span
