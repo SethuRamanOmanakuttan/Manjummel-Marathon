@@ -27,7 +27,11 @@ export default function Footer() {
           }}
         >
           {/* Left: brand */}
-          <div>
+          <a
+            href="/"
+            className="footer-brand-link"
+            aria-label="NSS Manjummel Marathon, Home"
+          >
             <p
               className="label-xs"
               style={{ color: 'rgba(245,241,232,0.3)', marginBottom: '0.3rem' }}
@@ -40,7 +44,7 @@ export default function Footer() {
             >
               SEASON 04
             </p>
-          </div>
+          </a>
 
           {/* Right: date + CTA */}
           <div
@@ -49,6 +53,7 @@ export default function Footer() {
               flexDirection: 'column',
               alignItems: 'flex-end',
               gap: '0.75rem',
+              flexShrink: 0,
             }}
           >
             <time

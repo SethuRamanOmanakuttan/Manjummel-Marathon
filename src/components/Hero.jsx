@@ -1,20 +1,33 @@
 import { useEffect, useRef } from 'react';
 import useMagnetic from '../hooks/useMagnetic';
+import useBackgroundCycle from '../hooks/useBackgroundCycle';
+import downloadIcs from '../utils/downloadIcs';
+
+const HERO_IMAGES = ['/bg.webp', '/bg2.webp', '/bg3.webp'];
 
 export default function Hero() {
   const heroRef = useRef(null);
+  const contentRef = useRef(null);
   const ctaRef = useMagnetic(0.25);
+  const activeImage = useBackgroundCycle(HERO_IMAGES, 3500);
 
-  // Subtle parallax on scroll
+  // Subtle parallax on scroll — background drifts at one rate, the
+  // headline/content layer drifts a few px slower, so the two read as
+  // slightly separated depth planes rather than one flat image.
   useEffect(() => {
     const el = heroRef.current;
+    const content = contentRef.current;
     if (!el) return;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
     const onScroll = () => {
       const rate = window.scrollY * 0.25;
-      el.style.backgroundPositionY = `calc(center + ${rate}px)`;
+      el.style.setProperty('--hero-bg-shift', `${rate}px`);
+      if (content) {
+        const shift = Math.min(window.scrollY * 0.06, 18);
+        content.style.setProperty('--hero-shift', `${shift}px`);
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -29,10 +42,6 @@ export default function Hero() {
         position: 'relative',
         width: '100%',
         minHeight: '100svh',
-        backgroundImage: "url('/bg.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundRepeat: 'no-repeat',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -41,42 +50,35 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
-      {/* Top scrim — keeps navbar text readable over the bright sky, always on */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 'clamp(110px, 14vw, 180px)',
-          background:
-            'linear-gradient(to bottom, rgba(3,10,18,0.85) 0%, rgba(3,10,18,0.5) 45%, transparent 100%)',
-          zIndex: 1,
-        }}
-      />
+      {/* Crossfading background layers — same scene, runners a step further
+          along each frame, so the cycle reads as gentle motion rather than
+          a slideshow cut. */}
+      {HERO_IMAGES.map((src, i) => (
+        <div
+          key={src}
+          aria-hidden="true"
+          className="hero-bg-layer"
+          style={{
+            backgroundImage: `url('${src}')`,
+            opacity: i === activeImage ? 1 : 0,
+          }}
+        />
+      ))}
 
-      {/* Bottom gradient — strong enough for text, soft enough to keep the artwork */}
+      {/* Single composited scrim — top readability, bottom-left legibility
+          and a soft left-to-right vignette, all in one layer so the
+          artwork underneath stays as clean as possible. */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
-          background:
-            'linear-gradient(to top, rgba(7,19,33,0.95) 0%, rgba(7,19,33,0.65) 28%, rgba(7,19,33,0.2) 52%, transparent 72%)',
           zIndex: 1,
-        }}
-      />
-
-      {/* Left vignette for text side */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background:
-            'linear-gradient(105deg, rgba(7,19,33,0.55) 0%, transparent 50%)',
-          zIndex: 1,
+          background: `
+            linear-gradient(180deg, rgba(3,10,18,0.8) 0%, rgba(3,10,18,0.42) 16%, transparent 32%),
+            linear-gradient(0deg, rgba(7,19,33,0.96) 0%, rgba(7,19,33,0.68) 26%, rgba(7,19,33,0.22) 50%, transparent 70%),
+            linear-gradient(100deg, rgba(7,19,33,0.5) 0%, transparent 48%)
+          `,
         }}
       />
 
@@ -86,6 +88,8 @@ export default function Hero() {
 
       {/* Content */}
       <div
+        ref={contentRef}
+        className="hero-parallax-layer"
         style={{
           position: 'relative',
           zIndex: 2,
@@ -103,6 +107,9 @@ export default function Hero() {
         <p
           className="anim-meta hero-kicker"
           style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.7em',
             color: 'rgba(245,241,232,0.75)',
             letterSpacing: '0.22em',
             fontSize: 'clamp(0.85rem, 1.6vw, 1.05rem)',
@@ -112,6 +119,7 @@ export default function Hero() {
             marginBottom: 'clamp(1.25rem, 3vw, 2rem)',
           }}
         >
+          <span aria-hidden="true" className="hero-eyebrow-dot" />
           SEASON 04 &nbsp;·&nbsp; FOR A{' '}
           <span className="hero-pulse">DRUG-FREE KERALA</span>
         </p>
@@ -153,7 +161,7 @@ export default function Hero() {
               letterSpacing: '-0.03em',
               lineHeight: 0.88,
               color: '#F5F1E8',
-              fontSize: 'clamp(4rem, 15vw, 13rem)',
+              fontSize: 'clamp(2.5rem, 13vw, 13rem)',
             }}
           >
             MANJUMMEL
@@ -168,7 +176,7 @@ export default function Hero() {
               textTransform: 'uppercase',
               letterSpacing: '-0.03em',
               lineHeight: 0.88,
-              fontSize: 'clamp(4rem, 15vw, 13rem)',
+              fontSize: 'clamp(2.5rem, 13vw, 13rem)',
             }}
           >
             MARATHON
@@ -198,21 +206,34 @@ export default function Hero() {
             <span className="btn-arrow" aria-hidden="true">→</span>
           </a>
 
-          <time
-            dateTime="2026-10-02"
-            className="hero-date"
-            style={{
-              color: 'rgba(245,241,232,0.85)',
-              fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
-              fontWeight: 700,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-            }}
-          >
-            02 OCT 2026
-            <span className="hero-date-sep" aria-hidden="true" />
-            MANJUMMEL, KERALA
-          </time>
+          <div className="hero-date" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
+            <time
+              dateTime="2026-10-02"
+              style={{
+                color: 'rgba(245,241,232,0.85)',
+                fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)',
+                fontWeight: 700,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+              }}
+            >
+              FRI, 02 OCT 2026
+            </time>
+
+            <button
+              type="button"
+              onClick={downloadIcs}
+              className="hero-calendar-btn"
+              aria-label="Add NSS Manjummel Marathon race day to your calendar"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="1.5" stroke="currentColor" strokeWidth="2" />
+                <path d="M3 10H21" stroke="currentColor" strokeWidth="2" />
+                <path d="M8 3V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M16 3V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -228,21 +249,22 @@ export default function Hero() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '0.5rem',
-          opacity: 0.35,
+          gap: '0.6rem',
+          opacity: 0.4,
         }}
       >
         <span
           className="label-xs"
           style={{
             writingMode: 'vertical-rl',
-            letterSpacing: '0.22em',
-            color: '#F5F1E8',
+            letterSpacing: '0.28em',
+            color: 'rgba(245,241,232,0.7)',
+            fontWeight: 600,
           }}
         >
           SCROLL
         </span>
-        <span className="hero-scroll-line" style={{ color: '#F26A21' }} />
+        <span className="hero-scroll-line" aria-hidden="true" />
       </div>
     </section>
   );

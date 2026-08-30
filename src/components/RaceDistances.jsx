@@ -69,9 +69,10 @@ export default function RaceDistances() {
               className="race-row reveal"
               style={{
                 display: 'flex',
+                flexWrap: 'wrap',
                 alignItems: 'center',
                 padding: 'clamp(1.5rem, 3.5vw, 2.5rem) 0',
-                gap: 'clamp(1rem, 3vw, 2rem)',
+                gap: 'clamp(0.75rem, 3vw, 2rem)',
                 transitionDelay: `${index * 0.08}s`,
               }}
             >
@@ -95,14 +96,14 @@ export default function RaceDistances() {
                   fontSize: 'clamp(2rem, 6vw, 5rem)',
                   color: '#F5F1E8',
                   flex: '0 0 auto',
-                  minWidth: 'clamp(6.5rem, 17vw, 15rem)',
+                  minWidth: 'clamp(5rem, 17vw, 15rem)',
                 }}
               >
                 {race.distance}
               </span>
 
               {/* Category + tag */}
-              <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ flex: '1 1 12rem', minWidth: 0 }}>
                 <span
                   className="label-sm"
                   style={{

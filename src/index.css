@@ -123,6 +123,80 @@ body {
 }
 
 /* ─────────────────────────────────────────────
+   Hero Background Crossfade
+   Three stacked layers of the same scene (runners
+   a step further along each frame). Only the active
+   layer's opacity is animated, so the swap reads as
+   a slow dissolve rather than a slideshow cut. The
+   scroll parallax offset lives on one shared custom
+   property so all three layers move together.
+───────────────────────────────────────────── */
+.hero-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center calc(50% + var(--hero-bg-shift, 0px));
+  background-repeat: no-repeat;
+  /* Linear, not eased: the outgoing and incoming layers' opacities always
+     sum to 1 this way, so the dissolve is a straight swap with no dip
+     through the dark section background mid-transition. */
+  transition: opacity 1.4s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-layer {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Staggered Word Reveal (display headlines)
+   Each word gets a small incremental delay via
+   --stagger-i, cascading a multi-word line in
+   quickly rather than as one flat block. Sits
+   inside an existing .reveal/.anim-headline
+   parent — those still control visibility;
+   this only staggers the per-word timing once
+   visible.
+───────────────────────────────────────────── */
+.stagger-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Inside a scroll-triggered .reveal: stay hidden until the parent
+     is marked visible by useScrollReveal's IntersectionObserver, then
+     cascade in word by word. */
+  .reveal.visible .stagger-word {
+    animation: staggerWordIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--stagger-i, 0) * 0.055s);
+  }
+
+  /* Inside .anim-headline (Hero): plays on load, so start once the
+     line itself begins appearing rather than waiting on scroll. */
+  .anim-headline .stagger-word {
+    animation: staggerWordIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(0.4s + var(--stagger-i, 0) * 0.05s);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-word {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+@keyframes staggerWordIn {
+  from { opacity: 0; transform: translateY(0.35em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────────
    Scroll Reveal
 ───────────────────────────────────────────── */
 .reveal {
@@ -298,7 +372,7 @@ body {
   display: block;
   height: 1px;
   width: clamp(2rem, 6vw, 5rem);
-  background: linear-gradient(to left, rgba(245, 241, 232, 0.9), transparent);
+  background: linear-gradient(to left, rgba(245, 241, 232, 0.7), transparent);
 }
 
 .hero-date {
@@ -306,43 +380,83 @@ body {
   align-items: center;
 }
 
-.hero-date-sep {
-  display: inline-block;
-  width: 1.5rem;
-  height: 1px;
-  margin: 0 0.85rem;
-  background: rgba(242, 106, 33, 0.7);
-  vertical-align: middle;
+.hero-calendar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(245, 241, 232, 0.3);
+  background: transparent;
+  color: rgba(245, 241, 232, 0.85);
+  cursor: pointer;
+  transition: border-color 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+}
+
+.hero-calendar-btn:hover {
+  border-color: #F26A21;
+  background-color: #F26A21;
+  color: #071321;
+}
+
+.hero-calendar-btn:focus-visible {
+  outline: 2px solid #F26A21;
+  outline-offset: 2px;
 }
 
 .hero-scroll-line {
   display: block;
   width: 1px;
-  height: 1.75rem;
-  background: currentColor;
+  height: 2rem;
+  background: linear-gradient(to bottom, #F26A21, transparent);
+}
+
+.hero-eyebrow-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #F26A21;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-eyebrow-dot {
+    animation: heroPulseGlow 2.8s ease-in-out infinite;
+  }
 }
 
 .hero-frame {
   position: absolute;
-  width: clamp(28px, 4vw, 44px);
-  height: clamp(28px, 4vw, 44px);
+  width: clamp(24px, 3.2vw, 36px);
+  height: clamp(24px, 3.2vw, 36px);
   z-index: 2;
-  opacity: 0.5;
+  opacity: 0.35;
   pointer-events: none;
 }
 
 .hero-frame-tl {
   top: calc(clamp(64px, 10vw, 78px) + clamp(1.25rem, 3vw, 2.25rem));
   left: clamp(1.25rem, 3vw, 2.25rem);
-  border-top: 1.5px solid #F5F1E8;
-  border-left: 1.5px solid #F5F1E8;
+  border-top: 1px solid #F5F1E8;
+  border-left: 1px solid #F5F1E8;
 }
 
 .hero-frame-br {
   bottom: clamp(1.25rem, 3vw, 2.25rem);
   left: clamp(1.25rem, 3vw, 2.25rem);
-  border-bottom: 1.5px solid rgba(242, 106, 33, 0.7);
-  border-left: 1.5px solid rgba(242, 106, 33, 0.7);
+  border-bottom: 1px solid #F26A21;
+  border-left: 1px solid #F26A21;
+}
+
+/* Secondary parallax layer — headline + corner frames drift at a
+   slightly different rate than the background image (driven by JS
+   setting --hero-shift), a few px max so it reads as depth, not motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-parallax-layer {
+    transform: translateY(var(--hero-shift, 0px));
+    will-change: transform;
+  }
 }
 
 .hero-cta-glow {
@@ -459,6 +573,35 @@ body {
 .btn-nav:focus-visible {
   outline: 2px solid #F26A21;
   outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   Stat Row Underline Reveal (CauseSection) — the
+   border-top under the stat numbers draws itself
+   in left-to-right once the section scrolls into
+   view, riding the existing .reveal/.visible
+   mechanism rather than a new observer.
+───────────────────────────────────────────── */
+.stat-row-line {
+  position: relative;
+  border-top: 1px solid rgba(245, 241, 232, 0.08);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stat-row-line::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #F26A21;
+    transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  }
+
+  .reveal.visible .stat-row-line::before {
+    width: 100%;
+  }
 }
 
 /* ─────────────────────────────────────────────
@@ -603,6 +746,114 @@ body {
 .event-calendar-btn:focus-visible {
   outline: 2px solid #F26A21;
   outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   Footer Links
+───────────────────────────────────────────── */
+.footer-brand-link {
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.25s ease;
+}
+
+.footer-brand-link:hover,
+.footer-brand-link:focus-visible {
+  opacity: 0.8;
+}
+
+.footer-brand-link:focus-visible {
+  outline: 2px solid #F26A21;
+  outline-offset: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   Informational Stat Blocks (Intro, CauseSection,
+   RegisterCTA meta strip) — a restrained hover
+   lift/glow. These aren't clickable, so the
+   treatment stays subtle: no cursor change, no
+   implication of interactivity, just a quiet
+   life-sign when the pointer passes over.
+───────────────────────────────────────────── */
+.stat-block {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-block-value {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+@media (hover: hover) {
+  .stat-block:hover {
+    transform: translateY(-3px);
+  }
+
+  .stat-block:hover .stat-block-value {
+    color: #F26A21;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-block,
+  .stat-block-value {
+    transition: none;
+  }
+}
+
+/* Funky variant — Intro's big season/distance/date/edition
+   numbers (04, 03, 02, 01). Bold and oversized, with a
+   quiet lift on hover. */
+.intro-stat-funky {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.intro-stat-funky-value {
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+@media (hover: hover) {
+  .intro-stat-funky:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-stat-funky {
+    transition: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Cursor-reactive glow (CauseSection stat row /
+   learn-more link) — a soft radial highlight that
+   tracks the pointer via --mx/--my custom
+   properties set from JS. Purely additive; skipped
+   entirely under reduced motion / no-hover input.
+───────────────────────────────────────────── */
+.cursor-glow {
+  position: relative;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cursor-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1.5rem;
+    background: radial-gradient(
+      180px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(242, 106, 33, 0.14),
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .cursor-glow:hover::before {
+    opacity: 1;
+  }
 }
 
 /* ─────────────────────────────────────────────

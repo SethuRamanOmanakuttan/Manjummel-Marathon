@@ -1,5 +1,6 @@
 import useMagnetic from '../hooks/useMagnetic';
 import Countdown from './Countdown';
+import StaggerWords from './StaggerWords';
 
 export default function RegisterCTA() {
   const ctaRef = useMagnetic(0.25);
@@ -69,19 +70,19 @@ export default function RegisterCTA() {
             id="cta-heading"
             className="font-display"
             style={{
-              fontSize: 'clamp(3rem, 9.5vw, 8.5rem)',
+              fontSize: 'clamp(2.5rem, 9.5vw, 8.5rem)',
               color: '#F5F1E8',
               marginBottom: '0',
               lineHeight: 0.9,
             }}
           >
-            NSS MANJUMMEL
+            <StaggerWords text="NSS MANJUMMEL" />
             <br />
             <span
               className="text-outline"
               style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.65)' }}
             >
-              MARATHON
+              <StaggerWords text="MARATHON" startIndex={2} />
             </span>
             <span style={{ color: '#F26A21', WebkitTextStroke: '0', WebkitTextFillColor: '#F26A21' }}>.</span>
           </h2>
@@ -91,7 +92,8 @@ export default function RegisterCTA() {
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '0',
+              rowGap: '1.25rem',
+              columnGap: 'clamp(1.25rem, 4vw, 2.5rem)',
               alignItems: 'center',
               marginTop: 'clamp(1.5rem, 3vw, 2.5rem)',
               marginBottom: 'clamp(2.5rem, 6vw, 5rem)',
@@ -104,14 +106,14 @@ export default function RegisterCTA() {
               { label: 'SEASON', val: '04' },
               { label: 'DATE', val: '02 OCT 2026' },
               { label: 'LOCATION', val: 'MANJUMMEL, KERALA' },
-            ].map((item, i) => (
+            ].map((item, i, arr) => (
               <div
                 key={item.label}
+                className="stat-block"
                 style={{
                   flex: '0 0 auto',
-                  paddingRight: '2.5rem',
-                  marginRight: i < 2 ? '2.5rem' : 0,
-                  borderRight: i < 2 ? '1px solid rgba(245,241,232,0.07)' : 'none',
+                  paddingRight: i < arr.length - 1 ? 'clamp(1.25rem, 4vw, 2.5rem)' : 0,
+                  borderRight: i < arr.length - 1 ? '1px solid rgba(245,241,232,0.07)' : 'none',
                 }}
               >
                 <p
@@ -121,11 +123,13 @@ export default function RegisterCTA() {
                   {item.label}
                 </p>
                 <p
+                  className="stat-block-value"
                   style={{
-                    fontSize: '0.85rem',
+                    fontSize: 'clamp(0.78rem, 1.6vw, 0.85rem)',
                     fontWeight: 600,
                     color: 'rgba(245,241,232,0.7)',
                     letterSpacing: '0.05em',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {item.val}

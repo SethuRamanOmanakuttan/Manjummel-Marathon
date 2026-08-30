@@ -1,4 +1,39 @@
+import { useRef } from 'react';
+import StaggerWords from './StaggerWords';
+import useCountUp from '../hooks/useCountUp';
+
+const STATS = [
+  { target: 9000, suffix: '+', label: 'Cases registered' },
+  { target: 9700, suffix: '+', label: 'Arrests made' },
+  { target: 75, suffix: '', label: 'Days in phase one' },
+];
+
+function StatBlock({ target, suffix, label }) {
+  const [ref, value] = useCountUp(target);
+  return (
+    <div ref={ref} className="stat-block">
+      <p className="font-display stat-block-value" style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)', color: '#F5F1E8', fontVariantNumeric: 'tabular-nums' }}>
+        {value.toLocaleString('en-IN')}
+        {suffix}
+      </p>
+      <p className="label-xs" style={{ color: 'rgba(245,241,232,0.3)', marginTop: '0.5rem' }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
 export default function CauseSection() {
+  const cursorRef = useRef(null);
+
+  const onCursorMove = (e) => {
+    const el = cursorRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+    el.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  };
+
   return (
     <section
       aria-labelledby="cause-heading"
@@ -13,14 +48,11 @@ export default function CauseSection() {
         <div
           className="reveal"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            columnGap: '2rem',
             paddingTop: 'clamp(1.5rem, 3vw, 2.5rem)',
           }}
         >
           {/* Left: heading */}
-          <div style={{ gridColumn: 'span 12' }}>
+          <div>
             <p className="label-sm" style={{ color: '#F26A21', marginBottom: '2rem' }}>
               RUNNING WITH A CAUSE
             </p>
@@ -35,13 +67,13 @@ export default function CauseSection() {
                 maxWidth: '16ch',
               }}
             >
-              EVERY STRIDE IS A STAND
+              <StaggerWords text="EVERY STRIDE IS A STAND" />
               <br />
               <span
                 className="text-outline"
                 style={{ WebkitTextStrokeColor: 'rgba(245,241,232,0.35)' }}
               >
-                AGAINST ADDICTION.
+                <StaggerWords text="AGAINST ADDICTION." startIndex={5} />
               </span>
             </h2>
           </div>
@@ -51,13 +83,10 @@ export default function CauseSection() {
         <div
           className="reveal"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            columnGap: '2rem',
             marginTop: 'clamp(2.5rem, 5vw, 4rem)',
           }}
         >
-          <div style={{ gridColumn: 'span 12' }}>
+          <div>
             <p
               style={{
                 color: 'rgba(245,241,232,0.6)',
@@ -82,47 +111,29 @@ export default function CauseSection() {
 
             {/* Stat row — real campaign numbers */}
             <div
+              className="stat-row-line"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
                 gap: 'clamp(2rem, 5vw, 3.5rem)',
                 marginTop: 'clamp(2.5rem, 5vw, 3.5rem)',
                 paddingTop: '2rem',
-                borderTop: '1px solid rgba(245,241,232,0.08)',
               }}
             >
-              {[
-                { val: '9,000+', label: 'Cases registered' },
-                { val: '9,700+', label: 'Arrests made' },
-                { val: '75', label: 'Days in phase one' },
-              ].map((item) => (
-                <div key={item.label}>
-                  <p
-                    className="font-display"
-                    style={{
-                      fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-                      color: '#F5F1E8',
-                    }}
-                  >
-                    {item.val}
-                  </p>
-                  <p
-                    className="label-xs"
-                    style={{ color: 'rgba(245,241,232,0.3)', marginTop: '0.5rem' }}
-                  >
-                    {item.label}
-                  </p>
-                </div>
+              {STATS.map((item) => (
+                <StatBlock key={item.label} {...item} />
               ))}
             </div>
 
             {/* CTA link */}
             <div style={{ marginTop: 'clamp(2.5rem, 5vw, 3.5rem)' }}>
               <a
+                ref={cursorRef}
+                onMouseMove={onCursorMove}
                 href="https://keralapolice.gov.in/page/operation-toofan-the-narco-hunt"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-nav"
+                className="btn-nav cursor-glow"
                 aria-label="Learn more about Operation Thoofan (opens in a new tab)"
               >
                 LEARN ABOUT OPERATION THOOFAN
