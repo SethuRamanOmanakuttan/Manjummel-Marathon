@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manjummelmarathon.in/sitemap.xml
