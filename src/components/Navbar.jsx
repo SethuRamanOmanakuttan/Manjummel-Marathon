@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-
-const REGISTER_URL = '#register';
+import { useRegisterModal } from '../context/RegisterModalContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const openRegisterModal = useRegisterModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -99,16 +99,17 @@ export default function Navbar() {
         </div>
 
         {/* Register CTA */}
-        <a
-          href={REGISTER_URL}
+        <button
+          type="button"
+          onClick={openRegisterModal}
           className="btn-nav"
           id="nav-register-btn"
           aria-label="Register for the marathon"
-          style={{ flexShrink: 0, fontSize: 'clamp(0.68rem, 1.9vw, 0.8rem)' }}
+          style={{ flexShrink: 0, fontSize: 'clamp(0.68rem, 1.9vw, 0.8rem)', background: 'none' }}
         >
           REGISTER
           <span className="btn-arrow" aria-hidden="true">↗</span>
-        </a>
+        </button>
       </nav>
     </header>
   );

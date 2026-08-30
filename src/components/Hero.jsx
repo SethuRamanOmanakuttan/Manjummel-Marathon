@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import useMagnetic from '../hooks/useMagnetic';
 import useBackgroundCycle from '../hooks/useBackgroundCycle';
-import downloadIcs from '../utils/downloadIcs';
+import addToCalendar from '../utils/addToCalendar';
+import { useRegisterModal } from '../context/RegisterModalContext';
 
 const HERO_IMAGES = ['/bg.webp', '/bg2.webp', '/bg3.webp'];
 
@@ -10,6 +11,7 @@ export default function Hero() {
   const contentRef = useRef(null);
   const ctaRef = useMagnetic(0.25);
   const activeImage = useBackgroundCycle(HERO_IMAGES, 3500);
+  const openRegisterModal = useRegisterModal();
 
   // Subtle parallax on scroll — background drifts at one rate, the
   // headline/content layer drifts a few px slower, so the two read as
@@ -194,17 +196,17 @@ export default function Hero() {
             gap: 'clamp(1.25rem, 3vw, 2rem)',
           }}
         >
-          <a
+          <button
             ref={ctaRef}
-            href="#register"
+            type="button"
+            onClick={openRegisterModal}
             id="hero-register-btn"
             className="btn-primary btn-magnetic hero-cta-glow"
-            role="button"
             aria-label="Register for NSS Manjummel Marathon"
           >
             REGISTER NOW
             <span className="btn-arrow" aria-hidden="true">→</span>
-          </a>
+          </button>
 
           <div className="hero-date" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
             <time
@@ -222,7 +224,7 @@ export default function Hero() {
 
             <button
               type="button"
-              onClick={downloadIcs}
+              onClick={addToCalendar}
               className="hero-calendar-btn"
               aria-label="Add NSS Manjummel Marathon race day to your calendar"
             >

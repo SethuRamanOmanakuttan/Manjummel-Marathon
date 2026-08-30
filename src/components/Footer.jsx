@@ -1,4 +1,8 @@
+import { useRegisterModal } from '../context/RegisterModalContext';
+
 export default function Footer() {
+  const openRegisterModal = useRegisterModal();
+
   return (
     <footer
       role="contentinfo"
@@ -63,8 +67,9 @@ export default function Footer() {
             >
               02 OCT 2026
             </time>
-            <a
-              href="#register"
+            <button
+              type="button"
+              onClick={openRegisterModal}
               className="btn-nav"
               id="footer-register-btn"
               aria-label="Register for the marathon"
@@ -72,7 +77,7 @@ export default function Footer() {
             >
               REGISTER
               <span className="btn-arrow" aria-hidden="true">→</span>
-            </a>
+            </button>
           </div>
         </div>
 

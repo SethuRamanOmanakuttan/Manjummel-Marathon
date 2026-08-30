@@ -1,9 +1,11 @@
 import useMagnetic from '../hooks/useMagnetic';
 import Countdown from './Countdown';
 import StaggerWords from './StaggerWords';
+import { useRegisterModal } from '../context/RegisterModalContext';
 
 export default function RegisterCTA() {
   const ctaRef = useMagnetic(0.25);
+  const openRegisterModal = useRegisterModal();
 
   return (
     <section
@@ -158,17 +160,17 @@ export default function RegisterCTA() {
               flexWrap: 'wrap',
             }}
           >
-            <a
+            <button
               ref={ctaRef}
-              href="#"
+              type="button"
+              onClick={openRegisterModal}
               id="cta-register-btn"
               className="btn-primary btn-magnetic"
-              role="button"
               aria-label="Register for NSS Manjummel Marathon Season 04"
             >
               REGISTER NOW
               <span className="btn-arrow" aria-hidden="true">→</span>
-            </a>
+            </button>
 
             <div
               style={{

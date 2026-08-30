@@ -1,4 +1,4 @@
-import downloadIcs from '../utils/downloadIcs';
+import addToCalendar from '../utils/addToCalendar';
 
 export default function EventDate() {
   return (
@@ -138,7 +138,7 @@ export default function EventDate() {
             {/* Add to calendar CTA */}
             <button
               type="button"
-              onClick={downloadIcs}
+              onClick={addToCalendar}
               className="event-calendar-btn"
               style={{ marginTop: 'clamp(2rem, 4.5vw, 2.75rem)' }}
             >

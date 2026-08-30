@@ -9,25 +9,28 @@ import EventDate from './components/EventDate';
 import RegisterCTA from './components/RegisterCTA';
 import Footer from './components/Footer';
 import useScrollReveal from './hooks/useScrollReveal';
+import { RegisterModalProvider } from './context/RegisterModalContext';
 
 export default function App() {
   useScrollReveal();
 
   return (
-    <div id="app" style={{ backgroundColor: '#071321' }}>
-      <Navbar />
+    <RegisterModalProvider>
+      <div id="app" style={{ backgroundColor: '#071321' }}>
+        <Navbar />
 
-      <main id="main-content">
-        <Hero />
-        <Intro />
-        <Marquee />
-        <RaceDistances />
-        <CauseSection />
-        <EventDate />
-        <RegisterCTA />
-      </main>
+        <main id="main-content">
+          <Hero />
+          <Intro />
+          <Marquee />
+          <RaceDistances />
+          <CauseSection />
+          <EventDate />
+          <RegisterCTA />
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </RegisterModalProvider>
   );
 }
