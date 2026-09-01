@@ -167,18 +167,18 @@ export default function EventDate() {
               }}
             >
               RACE START &nbsp;·&nbsp;{' '}
-              <span style={{ color: '#F5F1E8' }}>KASTURBA ENGLISH MEDIUM SCHOOL</span>
+              <span style={{ color: '#F5F1E8' }}>MANJUMMEL</span>
             </span>
             <a
-              href="https://www.google.com/maps/place/Kasturba+English+Medium+School/@10.0595336,76.2947303,1173m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3b080ddffb38d8ef:0x394d877dd559b65c!8m2!3d10.0595336!4d76.2947303!16s%2Fg%2F1hm36f0sq?entry=ttu"
+              href="https://maps.app.goo.gl/p9xUQ4LAAHsn5cFL6"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open race start location, Kasturba English Medium School, in Google Maps"
+              aria-label="Open race start location, Manjummel, in Google Maps"
               className="event-map-frame"
             >
               <iframe
-                title="Race start — Kasturba English Medium School"
-                src="https://www.google.com/maps?q=Kasturba+English+Medium+School,Eloor,Kerala&z=15&output=embed"
+                title="Race start — Manjummel"
+                src="https://www.google.com/maps?q=Manjummel,Eloor,Kerala&z=15&output=embed"
                 className="event-map-embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

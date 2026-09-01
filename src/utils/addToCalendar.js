@@ -1,8 +1,8 @@
 const EVENT_TITLE = 'NSS Manjummel Marathon, Season 04';
-const EVENT_LOCATION = 'Kasturba English Medium School, Eloor, Kerala';
+const EVENT_LOCATION = 'Manjummel, Eloor, Kerala';
 const EVENT_START = '20261002T023000Z';
 const EVENT_END = '20261002T053000Z';
-const EVENT_DESCRIPTION = 'Race day for the NSS Manjummel Marathon, Season 04 — for a Drug-Free Kerala.';
+const EVENT_DESCRIPTION = 'Race day for the NSS Manjummel Marathon, Season 04, for a Drug-Free Kerala.';
 
 export function googleCalendarUrl() {
   const params = new URLSearchParams({
