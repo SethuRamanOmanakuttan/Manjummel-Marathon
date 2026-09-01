@@ -6,6 +6,8 @@ const PRICES = [
   { distance: '05 KM', tag: 'Fun Run', price: 350 },
 ];
 
+const REGISTRATION_FORM_URL = 'https://forms.gle/2fVYVw16J53KPj8o7';
+
 export default function RegisterModal({ open, onClose }) {
   const dialogRef = useRef(null);
   const closeBtnRef = useRef(null);
@@ -73,17 +75,17 @@ export default function RegisterModal({ open, onClose }) {
         </button>
 
         <span className="label-sm" style={{ color: '#F26A21' }}>
-          COMING SOON
+          REGISTRATION OPEN
         </span>
 
         <h2 id="register-modal-title" className="font-display register-modal-title">
-          REGISTRATION
+          PICK YOUR
           <br />
-          ISN'T OPEN YET
+          DISTANCE
         </h2>
 
         <p className="register-modal-copy">
-          We'll open registration soon. Here are the prices for each distance.
+          Here are the prices for each distance. Registration takes about two minutes.
         </p>
 
         <div className="register-modal-prices">
@@ -102,6 +104,17 @@ export default function RegisterModal({ open, onClose }) {
             </div>
           ))}
         </div>
+
+        <a
+          href={REGISTRATION_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary register-modal-cta"
+          aria-label="Continue to registration form (opens in a new tab)"
+        >
+          CONTINUE REGISTRATION
+          <span className="btn-arrow" aria-hidden="true">→</span>
+        </a>
 
         <div className="register-modal-contact">
           <p className="label-xs" style={{ color: 'rgba(245,241,232,0.3)', marginBottom: '0.5rem' }}>
@@ -126,10 +139,6 @@ export default function RegisterModal({ open, onClose }) {
             ))}
           </p>
         </div>
-
-        <p className="register-modal-footnote">
-          No spam, we'll let you know the moment it opens.
-        </p>
       </div>
     </div>
   );
